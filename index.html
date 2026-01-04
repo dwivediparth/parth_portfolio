@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parth Dwivedi | ServiceNow Developer & Web Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="global-background">
+    <div class="dynamic-blob blob-1"></div>
+    <div class="dynamic-blob blob-2"></div>
+    <div class="dynamic-blob blob-3"></div>
+</div>
+    <!-- Sticky Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#home" class="nav-logo">PD</a>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-shapes">
+    <div class="shape shape-1 floating-shape"></div>
+    <div class="shape shape-2 floating-shape"></div>
+    <div class="shape shape-3 floating-shape"></div>
+        </div>
+            <div class="hero-content">
+                <p class="hero-greeting">Hi, my name is</p>
+                <h1 class="hero-name">Parth Dwivedi.</h1>
+                <h2 class="hero-tagline">I build robust web applications and Java-based backend solutions.</h2>
+                <p class="hero-description">
+                    I am a final-year Computer Science student specializing in engineering exceptional digital experiences through Java development and modern web technologies. My primary focus is on building high-performance, scalable web architecture and mastering the Java ecosystem. Additionally, I am a Certified ServiceNow professional, leveraging platform expertise to bridge the gap between custom web innovation and enterprise-grade automation.
+                </p>
+                <div class="hero-links">
+                    <a href="#contact" class="hero-link"> Get In Touch</a>
+                    <a href="https://www.linkedin.com/in/parthdwivedi17/" target="_blank" class="hero-link">LinkedIn</a>
+                    <a href="Parth_Dwivedi_resume.pdf" download class="hero-link">Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Hello! I'm Parth, a passionate final year Computer Science student with a strong interest in 
+                        web technologies and ServiceNow platform development. I am always willing to take on challenges 
+                        and learn new technologies to build reliable and dedicated solutions.
+                    </p>
+                    <p>
+                        My journey in technology has been driven by a desire to build innovative solutions. As an 
+                        organized and dependable candidate, I successfully manage multiple priorities with a positive 
+                        attitude and am always willing to take on added responsibilities.
+                    </p>
+                    <p>Here are a few technologies I've been working with recently:</p>
+                    <ul class="tech-list">
+                        <li>▹ Java</li>
+                        <li>▹ JavaScript (React.js)</li>
+                        <li>▹ HTML, CSS & JavaScript</li>
+                        <li>▹ ServiceNow Platform</li>
+                        <li>▹ MySQL</li>
+                       
+                    </ul>
+                </div>
+                <div class="about-image-wrapper">
+                    <div class="about-image">
+                        <img src="profile photo.jpg" alt="Parth Dwivedi" class="profile-photo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience section" id="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience </h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Team Lead - ServiceNow Hackathon</h3>
+                            <p class="experience-company">HackNow, India</p>
+                        </div>
+                        <span class="experience-date">Aug 2025 – Oct 2026</span>
+                    </div>
+                    <p class="experience-location">Bengaluru</p>
+                    <ul class="experience-details">
+                        <li>Led a team to design and implement an automated waste management system on ServiceNow</li>
+                        <li>Developed custom tables and dashboards for locations, vehicles, schedules, routes, and complaints</li>
+                        <li>Implemented automatic complaint assignment and real-time reporting for efficient operations</li>
+                        <li>Achieved Top 50 team nationwide for innovative use of ServiceNow in civic problem-solving</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects </h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>WasteFlow (ServiceNow Hackathon - Top 50)</h3>
+                        <div class="project-links">
+                            <button class="project-link-btn" onclick="openChatbot('wasteflow')"> Ask AI to Explain</button>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        A waste flow management system to help in automated waste management and civic problem-solving. 
+                        Led a team to design and implement on ServiceNow platform with custom tables, dashboards, and 
+                        automated workflows.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">ServiceNow</span>
+                        <span class="tech-tag">ITSM</span>
+                        <span class="tech-tag">Workflow Automation</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>AI Powered Multilingual Learning</h3>
+                        <div class="project-links">
+                            <button class="project-link-btn" onclick="openChatbot('multilingual')"> Ask AI to Explain</button>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        An AI-powered system that transcribes educational videos using Whisper, translates content via 
+                        Google Cloud, synthesizes speech, and reconstructs videos for multilingual educational access.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Whisper</span>
+                        <span class="tech-tag">Google Cloud</span>
+                        <span class="tech-tag">AI/ML</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Stock Inventory Management</h3>
+                        <div class="project-links">
+                            <button class="project-link-btn" onclick="openChatbot('inventory')"> Ask AI to Explain </button>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        A full-stack inventory management system built with React.js frontend and MySQL database. 
+                        Enables real-time tracking, updating, and managing of inventory with a clean and responsive UI.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React.js</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills section" id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills </h2>
+            <div class="skills-tags">
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">ServiceNow</span>
+                <span class="skill-tag">System Administration</span>
+                <span class="skill-tag">Application Development</span>
+                <span class="skill-tag">ITSM</span>
+                <span class="skill-tag">Leadership</span>
+                <span class="skill-tag">Business Management</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hackathon Wins Section -->
+    <section class="hackathons section" id="hackathons">
+        <div class="container">
+            <h2 class="section-title">Hackathon Wins</h2>
+            <div class="hackathons-grid">
+                <div class="hackathon-card">
+                    <h3>ServiceNow Hackathon (HackNow, India)</h3>
+                    <p>Top 50 Team</p>
+                    <p class="hackathon-desc">Led team to build WasteFlow - an automated waste management system on ServiceNow platform</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications section" id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-grid">
+                <div class="cert-card">
+                    <img src="ServiceNow_CSA.png" alt="ServiceNow CSA" class="cert-image">
+                    <h3>ServiceNow Certified System Administrator</h3>
+                    <p>May 2025 – Present</p>
+                </div>
+                <div class="cert-card">
+                    <img src="ServiceNow _ CAD.png" alt="ServiceNow CAD" class="cert-image">
+                    <h3>ServiceNow Certified Application Developer</h3>
+                    <p>July 2025 – Present</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Fitness Test Section -->
+    <section class="ai-fitness section" id="ai-fitness">
+        <div class="container">
+            <h2 class="section-title">AI Fitness Test</h2>
+            <p class="section-subtitle">
+                Curious how my skills align with your job opening? Paste the job description below and let AI provide 
+                a detailed analysis of my suitability for the role.
+            </p>
+            <div class="fitness-test-container">
+                <textarea id="job-description" placeholder="Paste job description here..." rows="8"></textarea>
+                <button class="btn btn-primary" onclick="analyzeJobFit()"> Analyze Fit</button>
+                <div id="fitness-result" class="fitness-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">
+                I'm currently looking for full-time opportunities or freelancing roles.
+                Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            </p>
+            
+            <div class="contact-options text-center">
+                <button class="btn btn-primary" id="get-in-touch-btn" style="margin-bottom: 2rem;"> Get In Touch</button>
+                <div id="contact-form-container" class="hidden-form">
+                    <form action="https://formspree.io/f/parthdwivedi385@gmail.com" method="POST" class="contact-form-inner">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info-grid">
+                    <div class="contact-info-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:parthdwivedi385@gmail.com" class="contact-link">parthdwivedi385@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="contact-icon">💼</span>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/parthdwivedi17/" target="_blank" class="contact-link">Connect</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Designed & Built by Parth Dwivedi</p>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal" id="contact-modal">
+        <div class="contact-modal-content">
+            <div class="contact-modal-header">
+                <h2 class="contact-modal-title">Contact Me</h2>
+                <button class="contact-modal-close" id="contact-modal-close">&times;</button>
+            </div>
+            <form class="contact-modal-form" id="contact-form">
+                <div class="form-group">
+                    <label for="contact-name">Name</label>
+                    <input type="text" id="contact-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Email</label>
+                    <input type="email" id="contact-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <div class="message-header">
+                        <label for="contact-message">Message</label>
+                        <button type="button" class="generate-ai-btn" id="generate-ai-btn">Generate with AI ✨</button>
+                    </div>
+                    <textarea id="contact-message" name="message" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="contact-submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- AI Chatbot -->
+    <!-- AI Chatbot -->
+<div class="chatbot-container" id="chatbot-container">
+    <div class="chatbot-toggle" id="chatbot-toggle">
+        <span class="chatbot-icon">💬</span>
+    </div>
+    <div class="chatbot-window" id="chatbot-window">
+        <div class="chatbot-header">
+            <h3>Recruiter Assistant</h3>
+            <button class="chatbot-close" id="chatbot-close">&times;</button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <!-- messages go here -->
+        </div>
+        <div class="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Ask about qualifications..." />
+            <button id="chatbot-send">Send</button>
+        </div>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
