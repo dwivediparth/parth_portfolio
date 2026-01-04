@@ -4,13 +4,13 @@ A modern, responsive portfolio website with smooth animations, interactive galle
 
 ## Features
 
-✨ **Sticky Header Navigation** - Always visible navigation bar with smooth scrolling
-🎨 **Animated Hero Section** - Text reveal animations and floating background shapes
-👤 **Personal Information Section** - Profile photo, tagline, and quick facts
-🖼️ **Interactive Image Gallery** - Hover zoom effects and lightbox popup
-🌓 **Dark/Light Mode** - Toggle between themes with persistent preference
-📱 **Fully Responsive** - Works beautifully on all devices
-🎭 **Smooth Animations** - Scroll-triggered fade-ins and parallax effects
+ **Sticky Header Navigation** - Always visible navigation bar with smooth scrolling
+ **Animated Hero Section** - Text reveal animations and floating background shapes
+ **Personal Information Section** - Profile photo, tagline, and quick facts
+ **Interactive Image Gallery** - Hover zoom effects and lightbox popup
+ **Dark/Light Mode** - Toggle between themes with persistent preference
+ **Fully Responsive** - Works beautifully on all devices
+ **Smooth Animations** - Scroll-triggered fade-ins and parallax effects
 
 ## Getting Started
 
@@ -112,7 +112,8 @@ portfolio/
 - Add more sections as needed
 - Test on different screen sizes
 
-Enjoy your new portfolio! 🚀
+
+
 
 
 
