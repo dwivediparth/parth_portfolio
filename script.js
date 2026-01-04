@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// ===== AI Chatbot =====
+//  AI Chatbot 
 
 const chatbotContainer = document.getElementById('chatbot-container');
 const chatbotToggle = document.getElementById('chatbot-toggle');
@@ -438,53 +438,54 @@ function analyzeJobFit() {
             'Frontend Development',
             'MySQL',
             'Database Management',
-            'Java',
-            'Leadership',
-            'Team Management'
+            'Java'
         ];
 
-        // All skills analyzer 
         const allSkills = [
-            { name: 'ServiceNow Platform', keywords: ['servicenow', 'service now'], weight: 15 },
-            { name: 'ServiceNow System Administration', keywords: ['system administrator', 'sysadmin', 'csa'], weight: 10 },
+            { name: 'ServiceNow Platform', keywords: ['servicenow'], weight: 15 },
+            { name: 'ServiceNow System Administration', keywords: ['system administrator', 'csa'], weight: 10 },
             { name: 'ServiceNow Application Development', keywords: ['application developer', 'cad'], weight: 10 },
             { name: 'React.js', keywords: ['react'], weight: 10 },
             { name: 'JavaScript', keywords: ['javascript', 'js'], weight: 10 },
             { name: 'HTML/CSS', keywords: ['html', 'css'], weight: 8 },
-            { name: 'Frontend Development', keywords: ['frontend'], weight: 8 },
-            { name: 'MySQL', keywords: ['mysql'], weight: 7 },
-            { name: 'Database Management', keywords: ['database', 'sql'], weight: 7 },
+            { name: 'Frontend Development', keywords: ['frontend', 'front end'], weight: 8 },
+            { name: 'Backend Development', keywords: ['backend', 'back end'], weight: 8 },
+            { name: 'Web Development', keywords: ['web developer', 'web development'], weight: 8 },
             { name: 'Java', keywords: ['java'], weight: 10 },
-            { name: 'Backend', keywords: ['Backend'], weight: 10 }
+            { name: 'Database Management', keywords: ['sql', 'database'], weight: 7 }
         ];
 
-        
-        const nonITKeywords = [
+        // Non IT 
+        const mechanicalKeywords = [
             'mechanical', 'autocad', 'hvac', 'revit', 'solidworks', 'catia',
             'thermodynamics', 'fluid mechanics', 'piping', 'duct',
-            'ansys', 'creo', 'fusion 360', 'bom', 'assembly drawing' , 'sales' , 'electrical' , 'voice '
+            'ansys', 'creo', 'fusion 360', 'bom'
         ];
 
-        let totalRequired = 0;
-        let matchedRequired = 0;
+        // IT role 
+        const itRoleKeywords = [
+            'software', 'developer', 'engineer', 'frontend', 'backend',
+            'full stack', 'web', 'application' , 'Backend' , 'Frontend', 'web technologies'
+        ];
+
+        let totalWeight = 0;
+        let matchedWeight = 0;
         let matchedSkills = [];
         let missingSkills = [];
 
-        // Detect non-IT domain
-        let nonITHits = 0;
-        nonITKeywords.forEach(word => {
-            if (jobLower.includes(word)) nonITHits++;
-        });
+        // Detect domains
+        let mechanicalHits = mechanicalKeywords.filter(k => jobLower.includes(k)).length;
+        let itHits = itRoleKeywords.filter(k => jobLower.includes(k)).length;
 
         // Skill matching
         allSkills.forEach(skill => {
             const isRequired = skill.keywords.some(k => jobLower.includes(k));
 
             if (isRequired) {
-                totalRequired++;
+                totalWeight += skill.weight;
 
                 if (ownedSkills.includes(skill.name)) {
-                    matchedRequired++;
+                    matchedWeight += skill.weight;
                     matchedSkills.push(skill.name);
                 } else {
                     missingSkills.push(skill.name);
@@ -492,39 +493,40 @@ function analyzeJobFit() {
             }
         });
 
-        // Base score calculation
-        let matchScore = totalRequired === 0
-            ? 0
-            : Math.round((matchedRequired / totalRequired) * 100);
+        let matchScore;
 
-       
-        if (nonITHits >= 3) {
-            matchScore = Math.min(matchScore, 20);
-        }
-
-        // If  no required skills match
-        if (matchedRequired === 0 && totalRequired > 0) {
+        // IT role 
+        if (totalWeight === 0 && itHits > 0) {
+            matchScore = 60;
+        } else if (totalWeight === 0) {
             matchScore = 0;
+        } else {
+            matchScore = Math.round((matchedWeight / totalWeight) * 100);
         }
 
-        
+        // Mechanical role penalty (only if clearly mechanical)
+        if (mechanicalHits >= 3 && itHits === 0) {
+            matchScore = Math.min(matchScore, 15);
+        }
+
+        // Recommendations
         let recommendations = [];
 
         if (matchScore >= 80) {
-            recommendations.push('Excellent alignment with this role');
+            recommendations.push('Strong alignment with this role');
             recommendations.push('Highlight ServiceNow and full stack experience');
         } else if (matchScore >= 60) {
-            recommendations.push('Partial alignment with this role');
+            recommendations.push('Good alignment with this role');
+            recommendations.push('Emphasize web and frontend development projects');
+        } else if (matchScore >= 40) {
+            recommendations.push('Partial alignment');
             recommendations.push('Focus on transferable technical skills');
-        } else if (matchScore >= 30) {
-            recommendations.push('Low alignment with this role');
-            recommendations.push('This role is outside your primary domain');
         } else {
-            recommendations.push('Very low alignment');
-            recommendations.push('This role targets a different engineering discipline');
+            recommendations.push('Low alignment');
+            recommendations.push('This role targets a different technical domain');
         }
 
-        // Build UI
+        // UI output
         let resultHTML = `
             <h4>Job Fit Analysis</h4>
             <p><strong>Match Score: ${matchScore}%</strong></p>
@@ -539,7 +541,7 @@ function analyzeJobFit() {
 
         if (missingSkills.length > 0) {
             resultHTML += `
-                <p><strong>Missing / Unmatched Skills:</strong></p>
+                <p><strong>Missing Skills:</strong></p>
                 <ul>${missingSkills.map(s => `<li>${s}</li>`).join('')}</ul>
             `;
         }
