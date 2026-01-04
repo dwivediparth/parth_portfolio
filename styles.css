@@ -1,6 +1,5 @@
-/* ===== CSS Variables ===== */
 :root {
-    /* Dark Theme - Attractive & Engaging */
+    /* Dark Theme  */
     --bg-color: #0a0e27;
     --text-color: #e6f1ff;
     --text-secondary: #a8b2d1;
@@ -260,7 +259,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* ===== About Section ===== */
+/*  About Section  */
 .about-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -331,7 +330,7 @@ body {
     }
 }
 
-/* ===== Experience Section ===== */
+/*  Experience Section  */
 .experience-timeline {
     max-width: 900px;
     margin: 0 auto;
@@ -396,7 +395,7 @@ body {
     color: var(--accent-color);
 }
 
-/* ===== Projects Section ===== */
+/*  Projects Section  */
 .projects-grid {
     display: grid;
     gap: 2rem;
@@ -474,7 +473,7 @@ body {
     border: 1px solid var(--accent-color);
 }
 
-/* ===== Skills Section ===== */
+/*  Skills Section  */
 .skills-tags {
     display: flex;
     flex-wrap: wrap;
@@ -501,7 +500,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* ===== Hackathons Section ===== */
+/*  Hackathons Section  */
 .hackathons-grid {
     display: grid;
     gap: 2rem;
@@ -532,7 +531,7 @@ body {
     line-height: 1.6;
 }
 
-/* ===== Certifications Section ===== */
+/*  Certifications Section  */
 .certifications-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -575,7 +574,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* ===== AI Fitness Test Section ===== */
+/*  AI Fitness Test Section  */
 .fitness-test-container {
     max-width: 900px;
     margin: 0 auto;
@@ -624,7 +623,7 @@ body {
     margin-bottom: 0.5rem;
 }
 
-/* ===== Contact Section ===== */
+/*  Contact Section  */
 .contact {
     text-align: center;
 }
@@ -782,7 +781,7 @@ body {
     border-color: var(--accent-color);
 }
 
-/* ===== Contact Modal ===== */
+/*  Contact Modal  */
 .contact-modal {
     display: none;
     position: fixed;
@@ -986,7 +985,7 @@ body {
     background: var(--accent-hover);
 }
 
-/* ===== Footer ===== */
+/*  Footer  */
 .footer {
     text-align: center;
     padding: 2rem 0;
@@ -995,7 +994,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* ===== AI Chatbot ===== */
+/*  AI Chatbot  */
 .chatbot-container {
     position: fixed;
     bottom: 20px;
@@ -1166,7 +1165,7 @@ body {
     transform: scale(1.05);
 }
 
-/* ===== Responsive Design ===== */
+/*  Responsive Design  */
 @media (max-width: 768px) {
     .nav-list {
         position: fixed;
@@ -1261,7 +1260,7 @@ body {
 
 .shape {
     position: absolute;
-    background: var(--accent-color); /* Uses your existing accent color */
+    background: var(--accent-color); 
     opacity: 0.1;
     filter: blur(20px);
     border-radius: 50%;
@@ -1293,9 +1292,9 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1; /* Always behind all content */
+    z-index: -1; 
     overflow: hidden;
-    background: var(--bg-color); /* Matches your site background */
+    background: var(--bg-color); 
 }
 
 .dynamic-blob {
@@ -1303,7 +1302,7 @@ body {
     width: 400px;
     height: 400px;
     background: var(--accent-color);
-    opacity: 0.07; /* Very subtle to not distract from text */
+    opacity: 0.07; 
     filter: blur(80px);
     border-radius: 50%;
     animation: moveAround 25s infinite alternate ease-in-out;
