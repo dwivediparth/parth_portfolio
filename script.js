@@ -411,169 +411,149 @@ if (chatbotInput) {
     });
 }
 
-//  Job Fit Analysis 
+// Job Fit Analysis
 function analyzeJobFit() {
     const jobDescription = document.getElementById('job-description').value.trim();
     const resultDiv = document.getElementById('fitness-result');
-    
+
     if (!jobDescription) {
         alert('Please paste a job description to analyze.');
         return;
     }
-    
+
     resultDiv.innerHTML = '<p>Analyzing job fit...</p>';
     resultDiv.classList.add('show');
-    
+
     setTimeout(() => {
         const jobLower = jobDescription.toLowerCase();
-        
-        // Define all possible skills with their weights
-        const allSkills = [
-            { name: 'ServiceNow Platform', keywords: ['servicenow', 'service now'], weight: 15, category: 'primary' },
-            { name: 'ServiceNow System Administration', keywords: ['system administrator', 'sysadmin', 'csa'], weight: 10, category: 'primary' },
-            { name: 'ServiceNow Application Development', keywords: ['application developer', 'app developer', 'cad'], weight: 10, category: 'primary' },
-            { name: 'React.js', keywords: ['react'], weight: 10, category: 'primary' },
-            { name: 'JavaScript', keywords: ['javascript', 'js'], weight: 10, category: 'primary' },
-            { name: 'HTML/CSS', keywords: ['html', 'css'], weight: 8, category: 'secondary' },
-            { name: 'Frontend Development', keywords: ['frontend', 'front-end', 'front end'], weight: 8, category: 'secondary' },
-            { name: 'MySQL', keywords: ['mysql'], weight: 7, category: 'secondary' },
-            { name: 'Database Management', keywords: ['database', 'sql'], weight: 7, category: 'secondary' },
-            { name: 'Java', keywords: ['java'], weight: 10, category: 'primary' },
-            { name: 'Leadership', keywords: ['lead', 'leadership', 'team lead'], weight: 5, category: 'soft' },
-            { name: 'Team Management', keywords: ['team', 'collaboration', 'teamwork'], weight: 5, category: 'soft' }
+
+        // Skills 
+        const ownedSkills = [
+            'ServiceNow Platform',
+            'ServiceNow System Administration',
+            'ServiceNow Application Development',
+            'React.js',
+            'JavaScript',
+            'HTML/CSS',
+            'Frontend Development',
+            'MySQL',
+            'Database Management',
+            'Java',
+            'Leadership',
+            'Team Management'
         ];
+
+        // All skills analyzer 
+        const allSkills = [
+            { name: 'ServiceNow Platform', keywords: ['servicenow', 'service now'], weight: 15 },
+            { name: 'ServiceNow System Administration', keywords: ['system administrator', 'sysadmin', 'csa'], weight: 10 },
+            { name: 'ServiceNow Application Development', keywords: ['application developer', 'cad'], weight: 10 },
+            { name: 'React.js', keywords: ['react'], weight: 10 },
+            { name: 'JavaScript', keywords: ['javascript', 'js'], weight: 10 },
+            { name: 'HTML/CSS', keywords: ['html', 'css'], weight: 8 },
+            { name: 'Frontend Development', keywords: ['frontend'], weight: 8 },
+            { name: 'MySQL', keywords: ['mysql'], weight: 7 },
+            { name: 'Database Management', keywords: ['database', 'sql'], weight: 7 },
+            { name: 'Java', keywords: ['java'], weight: 10 },
+            { name: 'Backend', keywords: ['Backend'], weight: 10 }
+        ];
+
         
-        let matchScore = 100; // Start at 100%
+        const nonITKeywords = [
+            'mechanical', 'autocad', 'hvac', 'revit', 'solidworks', 'catia',
+            'thermodynamics', 'fluid mechanics', 'piping', 'duct',
+            'ansys', 'creo', 'fusion 360', 'bom', 'assembly drawing' , 'sales' , 'electrical' , 'voice '
+        ];
+
+        let totalRequired = 0;
+        let matchedRequired = 0;
         let matchedSkills = [];
         let missingSkills = [];
-        let requiredSkillsFound = 0;
-        let totalRequiredSkills = 0;
-        
-        // Check each skill
+
+        // Detect non-IT domain
+        let nonITHits = 0;
+        nonITKeywords.forEach(word => {
+            if (jobLower.includes(word)) nonITHits++;
+        });
+
+        // Skill matching
         allSkills.forEach(skill => {
-            let isRequired = false;
-            let isMatched = false;
-            
-            // Check if skill is mentioned in job description
-            for (let keyword of skill.keywords) {
-                if (jobLower.includes(keyword)) {
-                    isRequired = true;
-                    break;
-                }
-            }
-            
+            const isRequired = skill.keywords.some(k => jobLower.includes(k));
+
             if (isRequired) {
-                totalRequiredSkills++;
-                // Check if Parth has this skill 
-                matchedSkills.push(skill.name);
-                requiredSkillsFound++;
-                isMatched = true;
-            }
-        });
-        
-        
-        const commonSkillsNotOwned = [
-            { keywords: ['python'], name: 'Python', weight: 10 },
-            { keywords: ['node.js', 'nodejs', 'node'], name: 'Node.js', weight: 10 },
-            { keywords: ['angular'], name: 'Angular', weight: 10 },
-            { keywords: ['vue'], name: 'Vue.js', weight: 10 },
-            { keywords: ['docker'], name: 'Docker', weight: 8 },
-            { keywords: ['kubernetes', 'k8s'], name: 'Kubernetes', weight: 8 },
-            { keywords: ['aws', 'amazon web services'], name: 'AWS', weight: 8 },
-            { keywords: ['azure'], name: 'Azure', weight: 8 },
-            { keywords: ['mongodb'], name: 'MongoDB', weight: 7 },
-            { keywords: ['postgresql', 'postgres'], name: 'PostgreSQL', weight: 7 },
-            { keywords: ['typescript'], name: 'TypeScript', weight: 8 },
-            { keywords: ['spring'], name: 'Spring Framework', weight: 8 },
-            { keywords: ['rest api', 'restful'], name: 'REST API', weight: 5 }
-        ];
-        
-        commonSkillsNotOwned.forEach(skill => {
-            for (let keyword of skill.keywords) {
-                if (jobLower.includes(keyword)) {
+                totalRequired++;
+
+                if (ownedSkills.includes(skill.name)) {
+                    matchedRequired++;
+                    matchedSkills.push(skill.name);
+                } else {
                     missingSkills.push(skill.name);
-                    matchScore -= skill.weight;
-                    break;
                 }
             }
         });
-        
-        // Ensure score doesn't go below 0
-        matchScore = Math.max(0, matchScore);
-        
-        // Generate recommendations based on score
-        let recommendations = [];
-        
-        if (matchScore >= 85) {
-            recommendations.push('Excellent match! You have almost all the required skills');
-            recommendations.push('Highlight your ServiceNow certifications (CSA & CAD) prominently');
-            recommendations.push('Emphasize your Top 50 hackathon achievement and leadership experience');
-            if (missingSkills.length > 0) {
-                recommendations.push(`Consider mentioning transferable skills that relate to: ${missingSkills.join(', ')}`);
-            }
-        } else if (matchScore >= 70) {
-            recommendations.push('Strong match! You possess most of the key requirements');
-            recommendations.push('Lead with your ServiceNow expertise and certifications');
-            recommendations.push('Showcase your full-stack web development projects');
-            if (missingSkills.length > 0) {
-                recommendations.push(`Highlight your ability to quickly learn new technologies. Missing skills: ${missingSkills.slice(0, 3).join(', ')}`);
-            }
-        } else if (matchScore >= 50) {
-            recommendations.push('Good potential match with some skill gaps');
-            recommendations.push('Emphasize your strong foundation in web development and ServiceNow');
-            recommendations.push('Highlight your hackathon success and problem-solving abilities');
-            if (missingSkills.length > 0) {
-                recommendations.push(`Consider upskilling in: ${missingSkills.slice(0, 3).join(', ')}`);
-            }
-        } else {
-            recommendations.push('This role requires several skills outside your current expertise');
-            recommendations.push('Focus on roles that leverage ServiceNow, React.js, or Java');
-            recommendations.push('Consider this as a growth opportunity if you\'re willing to learn');
-            if (missingSkills.length > 0) {
-                recommendations.push(`Key missing skills: ${missingSkills.slice(0, 4).join(', ')}`);
-            }
+
+        // Base score calculation
+        let matchScore = totalRequired === 0
+            ? 0
+            : Math.round((matchedRequired / totalRequired) * 100);
+
+       
+        if (nonITHits >= 3) {
+            matchScore = Math.min(matchScore, 20);
         }
+
+        // If  no required skills match
+        if (matchedRequired === 0 && totalRequired > 0) {
+            matchScore = 0;
+        }
+
         
-        // Build result HTML
+        let recommendations = [];
+
+        if (matchScore >= 80) {
+            recommendations.push('Excellent alignment with this role');
+            recommendations.push('Highlight ServiceNow and full stack experience');
+        } else if (matchScore >= 60) {
+            recommendations.push('Partial alignment with this role');
+            recommendations.push('Focus on transferable technical skills');
+        } else if (matchScore >= 30) {
+            recommendations.push('Low alignment with this role');
+            recommendations.push('This role is outside your primary domain');
+        } else {
+            recommendations.push('Very low alignment');
+            recommendations.push('This role targets a different engineering discipline');
+        }
+
+        // Build UI
         let resultHTML = `
             <h4>Job Fit Analysis</h4>
             <p><strong>Match Score: ${matchScore}%</strong></p>
         `;
-        
+
         if (matchedSkills.length > 0) {
             resultHTML += `
-                <p style="margin-top: 1rem;"><strong> Matched Skills (${matchedSkills.length}):</strong></p>
-                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                    ${matchedSkills.map(skill => `<li style="color: var(--text-secondary); margin-bottom: 0.3rem;">${skill}</li>`).join('')}
-                </ul>
+                <p><strong>Matched Skills:</strong></p>
+                <ul>${matchedSkills.map(s => `<li>${s}</li>`).join('')}</ul>
             `;
         }
-        
+
         if (missingSkills.length > 0) {
             resultHTML += `
-                <p style="margin-top: 1rem;"><strong> Skills to Highlight or Learn (${missingSkills.length}):</strong></p>
-                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                    ${missingSkills.map(skill => `<li style="color: var(--text-secondary); margin-bottom: 0.3rem;">${skill}</li>`).join('')}
-                </ul>
+                <p><strong>Missing / Unmatched Skills:</strong></p>
+                <ul>${missingSkills.map(s => `<li>${s}</li>`).join('')}</ul>
             `;
         }
-        
+
         resultHTML += `
-            <p style="margin-top: 1rem;"><strong> Recommendations:</strong></p>
-            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                ${recommendations.map(rec => `<li style="color: var(--text-secondary); margin-bottom: 0.3rem;">${rec}</li>`).join('')}
-            </ul>
-            <p style="margin-top: 1rem; color: var(--accent-color); font-size: 1.1rem; font-weight: 600;">
-                ${matchScore >= 85 ? ' Excellent Candidate - Highly Recommended!' : 
-                  matchScore >= 70 ? ' Strong Candidate - Great Fit!' : 
-                  matchScore >= 50 ? '✓ Good Match - Worth Applying' : 
-                  '💼 Consider Upskilling for Better Fit'}
-            </p>
+            <p><strong>Recommendations:</strong></p>
+            <ul>${recommendations.map(r => `<li>${r}</li>`).join('')}</ul>
         `;
-        
+
         resultDiv.innerHTML = resultHTML;
+
     }, 1000);
 }
+
 
 //  Dynamic Background Mouse Interaction 
 document.addEventListener('mousemove', (e) => {
