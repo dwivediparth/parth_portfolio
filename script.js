@@ -1,8 +1,4 @@
-
-
-
-
-// ===== Theme Toggle =====
+//  Theme Toggle 
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle.querySelector('.theme-icon');
 const html = document.documentElement;
@@ -24,7 +20,7 @@ function updateThemeIcon(theme) {
     themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
-// ===== Mobile Navigation Toggle =====
+//  Mobile Navigation Toggle 
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -42,7 +38,7 @@ navLinks.forEach(link => {
     });
 });
 
-// ===== Active Navigation Link on Scroll =====
+//  Active Navigation Link on Scroll 
 const sections = document.querySelectorAll('.section, .hero');
 const navLinksArray = document.querySelectorAll('.nav-link');
 
@@ -68,7 +64,7 @@ function updateActiveNav() {
 
 window.addEventListener('scroll', updateActiveNav);
 
-// ===== Smooth Scroll for Navigation Links =====
+//  Smooth Scroll for Navigation Links 
 navLinksArray.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -87,7 +83,7 @@ navLinksArray.forEach(link => {
     });
 });
 
-// ===== Smooth Scroll for Hero Links =====
+//  Smooth Scroll for Hero Links 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -107,7 +103,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== Scroll-triggered Animations =====
+//  Scroll-triggered Animations 
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
@@ -126,7 +122,7 @@ document.querySelectorAll('.fade-in').forEach(el => {
     observer.observe(el);
 });
 
-// ===== Parallax Effect for Hero Section =====
+//  Parallax Effect for Hero Section 
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const shapes = document.querySelectorAll('.floating-shape');
@@ -138,7 +134,7 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// ===== Header Scroll Effect =====
+//  Header Scroll Effect 
 let lastScroll = 0;
 const header = document.getElementById('header');
 
@@ -154,7 +150,7 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// ===== Contact Form Toggle =====
+//  Contact Form Toggle 
 document.addEventListener('DOMContentLoaded', function() {
     const contactBtn = document.getElementById('get-in-touch-btn');
     const formContainer = document.getElementById('contact-form-container');
@@ -169,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===== AI Chatbot =====
-// Get all chatbot elements
+
 const chatbotContainer = document.getElementById('chatbot-container');
 const chatbotToggle = document.getElementById('chatbot-toggle');
 const chatbotWindow = document.getElementById('chatbot-window');
@@ -339,7 +335,7 @@ function sendMessage() {
     }
 }
 
-// Function to open chatbot (used by project buttons)
+// Function to open chatbot 
 function openChatbot(projectKey = null) {
     console.log('openChatbot called with project:', projectKey);
     if (chatbotWindow) {
@@ -415,7 +411,7 @@ if (chatbotInput) {
     });
 }
 
-// ===== Job Fit Analysis =====
+//  Job Fit Analysis 
 function analyzeJobFit() {
     const jobDescription = document.getElementById('job-description').value.trim();
     const resultDiv = document.getElementById('fitness-result');
@@ -468,15 +464,14 @@ function analyzeJobFit() {
             
             if (isRequired) {
                 totalRequiredSkills++;
-                // Check if Parth has this skill (all skills in the list are Parth's skills)
+                // Check if Parth has this skill 
                 matchedSkills.push(skill.name);
                 requiredSkillsFound++;
                 isMatched = true;
             }
         });
         
-        // Calculate deductions for missing important skills that might be required
-        // Check for skills mentioned in job description that Parth doesn't have
+        
         const commonSkillsNotOwned = [
             { keywords: ['python'], name: 'Python', weight: 10 },
             { keywords: ['node.js', 'nodejs', 'node'], name: 'Node.js', weight: 10 },
@@ -547,7 +542,7 @@ function analyzeJobFit() {
         
         if (matchedSkills.length > 0) {
             resultHTML += `
-                <p style="margin-top: 1rem;"><strong>✅ Matched Skills (${matchedSkills.length}):</strong></p>
+                <p style="margin-top: 1rem;"><strong> Matched Skills (${matchedSkills.length}):</strong></p>
                 <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
                     ${matchedSkills.map(skill => `<li style="color: var(--text-secondary); margin-bottom: 0.3rem;">${skill}</li>`).join('')}
                 </ul>
@@ -556,7 +551,7 @@ function analyzeJobFit() {
         
         if (missingSkills.length > 0) {
             resultHTML += `
-                <p style="margin-top: 1rem;"><strong>⚠️ Skills to Highlight or Learn (${missingSkills.length}):</strong></p>
+                <p style="margin-top: 1rem;"><strong> Skills to Highlight or Learn (${missingSkills.length}):</strong></p>
                 <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
                     ${missingSkills.map(skill => `<li style="color: var(--text-secondary); margin-bottom: 0.3rem;">${skill}</li>`).join('')}
                 </ul>
@@ -564,13 +559,13 @@ function analyzeJobFit() {
         }
         
         resultHTML += `
-            <p style="margin-top: 1rem;"><strong>💡 Recommendations:</strong></p>
+            <p style="margin-top: 1rem;"><strong> Recommendations:</strong></p>
             <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
                 ${recommendations.map(rec => `<li style="color: var(--text-secondary); margin-bottom: 0.3rem;">${rec}</li>`).join('')}
             </ul>
             <p style="margin-top: 1rem; color: var(--accent-color); font-size: 1.1rem; font-weight: 600;">
-                ${matchScore >= 85 ? '🎯 Excellent Candidate - Highly Recommended!' : 
-                  matchScore >= 70 ? '✅ Strong Candidate - Great Fit!' : 
+                ${matchScore >= 85 ? ' Excellent Candidate - Highly Recommended!' : 
+                  matchScore >= 70 ? ' Strong Candidate - Great Fit!' : 
                   matchScore >= 50 ? '✓ Good Match - Worth Applying' : 
                   '💼 Consider Upskilling for Better Fit'}
             </p>
@@ -580,7 +575,7 @@ function analyzeJobFit() {
     }, 1000);
 }
 
-// ===== Dynamic Background Mouse Interaction =====
+//  Dynamic Background Mouse Interaction 
 document.addEventListener('mousemove', (e) => {
     const blobs = document.querySelectorAll('.dynamic-blob');
     const mouseX = e.clientX;
@@ -596,7 +591,7 @@ document.addEventListener('mousemove', (e) => {
     });
 });
 
-// ===== Initialize on Load =====
+//  Initialize on Load 
 window.addEventListener('load', () => {
     updateActiveNav();
     document.body.classList.add('loaded');
